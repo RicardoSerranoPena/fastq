@@ -1,5 +1,9 @@
+*{
+  box-sizing: border-box;
+}
+
 body {
-  padding: 50px;
+  padding: 1rem;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
@@ -15,18 +19,24 @@ a {
       padding-top: 70px;
       padding-bottom: 70px;
   }
-  .navbar {
-      padding-top: 15px;
-      padding-bottom: 15px;
-      border: 0;
-      border-radius: 0;
-      margin-bottom: 0;
-      font-size: 12px;
-      letter-spacing: 5px;
-  }
-  .navbar-nav  li a:hover {
-      color: #1abc9c !important;
-  }
 .active>a {
     color: #1abc9c !important;;
   }
+
+.navbar-search {
+  align-items: center;
+}
+.logo {
+  font-size: 2rem;
+}
+.search-box {
+  float: right;
+  font-size: 1.7rem;
+}
+.active-cyan-2 input[type=text]:focus:not([readonly]) {
+  border-bottom: 1px solid #4dd0e1;
+  box-shadow: 0 1px 0 0 #4dd0e1;
+}
+.active-cyan-2 .fa {
+  color: #4dd0e1;
+}
