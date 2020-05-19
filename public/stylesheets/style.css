@@ -24,7 +24,7 @@ a {
   }
 
 .navbar-search {
-  align-items: center;
+  padding-top: 1rem;
 }
 .logo {
   font-size: 2rem;
@@ -39,4 +39,8 @@ a {
 }
 .active-cyan-2 .fa {
   color: #4dd0e1;
+}
+.search-box .search-btn {
+  border: none;
+  background-color: white;
 }
