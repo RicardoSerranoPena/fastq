@@ -49,3 +49,7 @@ a {
   display: flex; /* or inline-flex */
   flex-direction: row;
 }
+
+.row {
+  justify-items: center;
+}
