@@ -50,4 +50,13 @@ a {
   flex-direction: row;  
   flex-wrap: wrap;
   justify-items: center;
+  align-items: center;
+}
+
+.row {
+  display: flex; /* or inline-flex */
+  flex-direction: row;  
+  flex-wrap: wrap;
+  justify-items: center;
+  align-items: center;
 }
