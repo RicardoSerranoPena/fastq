@@ -47,9 +47,7 @@ a {
 
 .container {
   display: flex; /* or inline-flex */
-  flex-direction: row;
-}
-
-.row {
+  flex-direction: row;  
+  flex-wrap: wrap;
   justify-items: center;
 }
