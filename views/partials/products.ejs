@@ -1,116 +1,14 @@
-<div class="container-products">
-  <div class="row-products">
-    <span class="border border-primary"
-      ><div class="col-sm-3">
-        <div class="card" style="width: 18rem;">
-          <img
-            class="img-responsive border border-primary rounded"
-            src="https://i.insider.com/5432ecc8ecad046666d2a561?width=750&format=jpeg&auto=webp"
-            alt="..."
-          />
-          <div class="card-body">
-            <p class="card-text">
-              Description of stores
-            </p>
-          </div>
-        </div>
-      </div>
-    </span>
-    <span class="border border-primary"
-      ><div class="col-sm-3">
-        <div class="card" style="width: 18rem;">
-          <img
-            class="img-responsive border border-primary rounded"
-            src="https://i.insider.com/5432ecc8ecad046666d2a561?width=750&format=jpeg&auto=webp"
-            alt="..."
-          />
-          <div class="card-body">
-            <p class="card-text">
-              Description of stores
-            </p>
-          </div>
-        </div>
-      </div>
-    </span>
-    <span class="border border-primary"
-      ><div class="col-sm-3">
-        <div class="card" style="width: 18rem;">
-          <img
-            class="img-responsive border border-primary rounded"
-            src="https://i.insider.com/5432ecc8ecad046666d2a561?width=750&format=jpeg&auto=webp"
-            alt="..."
-          />
-          <div class="card-body">
-            <p class="card-text">
-              Description of stores
-            </p>
-          </div>
-        </div>
-      </div>
-    </span>
-    <span class="border border-primary"
-      ><div class="col-sm-3">
-        <div class="card" style="width: 18rem;">
-          <img
-            class="img-responsive border border-primary rounded"
-            src="https://i.insider.com/5432ecc8ecad046666d2a561?width=750&format=jpeg&auto=webp"
-            alt="..."
-          />
-          <div class="card-body">
-            <p class="card-text">
-              Description of stores
-            </p>
-          </div>
-        </div>
-      </div>
-    </span>
-    <span class="border border-primary"
-      ><div class="col-sm-3">
-        <div class="card" style="width: 18rem;">
-          <img
-            class="img-responsive border border-primary rounded"
-            src="https://i.insider.com/5432ecc8ecad046666d2a561?width=750&format=jpeg&auto=webp"
-            alt="..."
-          />
-          <div class="card-body">
-            <p class="card-text">
-              Description of stores
-            </p>
-          </div>
-        </div>
-      </div>
-    </span>
-    <span class="border border-primary"
-      ><div class="col-sm-3">
-        <div class="card" style="width: 18rem;">
-          <img
-            class="img-responsive border border-primary rounded"
-            src="https://i.insider.com/5432ecc8ecad046666d2a561?width=750&format=jpeg&auto=webp"
-            alt="..."
-          />
-          <div class="card-body">
-            <p class="card-text">
-              Description of stores
-            </p>
-          </div>
-        </div>
-      </div>
-    </span>
-    <span class="border border-primary"
-      ><div class="col-sm-3">
-        <div class="card" style="width: 18rem;">
-          <img
-            class="img-responsive border border-primary rounded"
-            src="https://i.insider.com/5432ecc8ecad046666d2a561?width=750&format=jpeg&auto=webp"
-            alt="..."
-          />
-          <div class="card-body">
-            <p class="card-text">
-              Description of stores
-            </p>
-          </div>
-        </div>
-      </div>
-    </span>
-  </div>
-</div>
+<div class="container stores-container">
+    <div class="row row-stores align-items-center">
+        <% for (var i =1; i <=10;  i++ ) { %>
+            <div class="col col-stores my-auto">
+                <div class="row stores">
+                    <div class="col-xs-4">
+                        <img class="img img-thumbnail rounded" src="images/food.jpg" alt="...">
+                    </div>
+                    <div class="col-xs-8">
+                        <p class="card-text">Description of stores</p>
+                    </div>
+                </div>
+             </div>
+        <% } %>
