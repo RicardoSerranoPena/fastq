@@ -18,6 +18,7 @@ router.get('/all-stores', function(req,res,next){
 }
 );
 
+<<<<<<< HEAD
 router.get('/all-stores', function(req,res,next){
   res.render('index')
 }
@@ -28,4 +29,6 @@ router.get('/all-stores', function(req,res,next){
 }
 );
 
+=======
+>>>>>>> parent of e9fd979... responsive homepage
 module.exports = router;
