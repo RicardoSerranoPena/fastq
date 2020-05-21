@@ -22,16 +22,37 @@
             <div class="row row-product-list">
                 <% for (var i =1; i <=10;  i++ ) { %>
                     <div class="col-12 col-products">
-                        <div class="row">
-                            <div class="col-xs-3 my-auto">
-                                <img class="img img-thumbnail rounded" src="images/food.jpg" alt="...">
+                        <div class="row row-product-item">
+                            <div class="col-xs-3">
+                                <div class="menu-item-img">
+                                    <img class="img-fluid img-thumbnail rounded" src="images/food-sm.jpg" alt="...">
+                                </div>
                             </div>
-                            <div class="col-xs-7 my-auto">
-                                <p><span class="food-name">Food name   </span><span class="price">   $10</span</p>
-                                <p>Food description</p>
+                            <div class="col-xs-6">
+                                <div class="food-description">
+                                    <p><span class="food-name">Food name   </span></p>
+                                    <p>Food description</p>
+                                    <p><span class="price">20.000vnd</span></p>
+                                </div>
                             </div>
-                            <div class="col-xs-2 my-auto align-self-center">
-                                <button class="add-to-cart-button" type="submit"><i class="fas fa-cart-plus fa-2x"></i></button>
+                            <div class="col-xs-3 align-self-center">
+                                <div class="food-select-amount container">
+                                    <div class="row row-select-amount align-self-center justify-content-end">
+                                        <div class="col">
+                                            <div class="minus">
+                                                <i class="fas fa-minus-circle"></i>
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <p> n </p>
+                                        </div>
+                                        <div class="col">
+                                            <div class="plus">
+                                                <i class="fas fa-plus-circle"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -40,18 +61,65 @@
         </div>
     </section>
 
-    <footer class="shopping-cart section">
+    <footer class="shopping-cart">
         <div class="container">
             <div class="row row-shopping-cart">
                 <div class="col-xs-9 align-items-center">
-                    <p class="cart-total">Total: $20.00 (2 items)</p>
+                    <button type="button" data-toggle="modal" data-target="#cart-modal" class="shopping-cart-button btn btn-block">
+                        Total: $20.00 (2 items)
+                    </button>
                 </div>
                 <div class="col-xs-3 col-shopping-cart align-self-end">
-                    <button class="shopping-cart-button"><i class="fas fa-shopping-cart fa-2x"></i></button>
+                    <button type="button" data-toggle="modal" data-target="#cart-modal" class="shopping-cart-button btn">
+                        <i class="fas fa-shopping-cart fa-2x"></i>
+                    </button>
                 </div>
             </div>
         </div>
     </footer>
+
+    <div class="modal fade" id="cart-modal" tabindex="-1" role="dialog" aria-hidden="true" class="cart-modal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="row">
+                        <div class="col-xs-10">
+                            <h3 class="modal-title" id="exampleModalLongTitle">Shop name</h3>
+                        </div>
+                        <div class="col-xs-2">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <div class="container">
+                        <div class="row modal-total-row align-items-center">
+                            <div class="col-10">
+                                <h4>Total: <span class="total-qt">(n-items)</span> <span class="total-price">22k</span></h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container">
+                        <div class="row cart-items-row">
+                            <div class="col-xs-8 align-content-center">
+                                <p>product name</p>
+                            </div>
+                            <div class="col-xs-4">
+                                <p>+  n  -</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <form method="get" action="/pay">
+                        <button type="submit" class="btn-lg">Pay</buttton>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </body>
 <% include partials/script %>
