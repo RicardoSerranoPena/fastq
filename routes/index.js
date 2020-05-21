@@ -23,4 +23,9 @@ router.get('/all-stores', function(req,res,next){
 }
 );
 
+router.get('/all-stores', function(req,res,next){
+  res.render('index')
+}
+);
+
 module.exports = router;
