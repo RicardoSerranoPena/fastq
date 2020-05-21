@@ -11,4 +11,9 @@ router.get('/shop', function(req, res, next) {
   res.render('shop', {page:'Shop', menuId:'shop'});
 });
 
+router.get('/all-stores', function(req,res,next){
+  res.render('index')
+}
+);
+
 module.exports = router;
