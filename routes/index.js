@@ -13,4 +13,9 @@ router.get('/getproducts',ctrl.getProducts)
 router.post('/createshop',ctrl.createShop)
 router.get('/shops',ctrl.getShops)
 
+router.get('/all-stores', function(req,res,next){
+  res.render('index')
+}
+);
+
 module.exports = router;
