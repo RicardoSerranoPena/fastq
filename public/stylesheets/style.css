@@ -58,12 +58,20 @@ a {
 }
 
 .row-category {
+<<<<<<< HEAD
     display: flex;
     justify-content: center;
     padding-left: 1rem;
     padding-right: 1rem;
     padding-top: 1rem;
     border-radius: 0.5rem!important;
+=======
+  display: flex;
+  justify-content: center;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 1rem;
+>>>>>>> added message
 }
 
 .col-category {
@@ -292,6 +300,7 @@ button:hover{
   align-items: center;
 }
 
+<<<<<<< HEAD
 @media only screen and (max-width: 650px){
     input[type=text]{
         width: 70%;
@@ -311,5 +320,13 @@ button:hover{
 <<<<<<< HEAD
 }
 =======
+<<<<<<< HEAD
 }
 >>>>>>> parent of 3dd110a... rebase master
+=======
+
+.col-stores img {
+  max-width: 100%
+}
+>>>>>>> added message
+>>>>>>> parent of e9fd979... responsive homepage
