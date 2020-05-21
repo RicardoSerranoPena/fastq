@@ -5,7 +5,40 @@
 </head>
 <body>
 
+    <header class="shop-header container">
+        <div class="image-wrap">
+            <img class="center" src="images/street-food.jpg">
+        </div>
+        <div class=image-overlay></div>
+        <div class="image-content">
+            <h1>Shop name</h1>
+            <a class="address" href="maps.google.com/vietnam">123 corner st. gia loc, tay ninh, vn</a>
+            <p class="hours">7:00am - 9:00pm</p>
+        </div>
+    </header>
 
+    <section class="section shop-products-section">
+        <div class="container">
+            <div class="row row-product-list">
+                <% for (var i =1; i <=10;  i++ ) { %>
+                    <div class="col-12 col-products">
+                        <div class="row">
+                            <div class="col-xs-3 my-auto">
+                                <img class="img img-thumbnail rounded" src="images/food.jpg" alt="...">
+                            </div>
+                            <div class="col-xs-7">
+                                <p><span class="food-name">Food name   </span><span class="price">   $10</span</p>
+                                <p>Food description</p>
+                            </div>
+                            <div class="col-xs-2">
+                                <button type="submit"><i class="fas fa-cart-plus fa-2x"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                <% } %>
+            </div>
+        </div>
+    </section>
 </body>
 <% include partials/script %>
 </html>
