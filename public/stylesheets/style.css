@@ -145,11 +145,17 @@ a {
     margin-top: .5rem;
 }
 
+.row-product-list {
+    padding-bottom: 5rem;
+}
 .row-product-list .food-name {
     font-size: 2rem;
+    color: #250902;
+    font-weight: bold;
 }
 .row-product-list .price {
     font-stretch: ultra-expanded;
+    color: #37040D;
 }
 
 .col-products {
@@ -157,8 +163,46 @@ a {
     border-bottom: 1px solid grey;
 }
 
+.add-to-cart-button {
+    padding-top: 1rem;
+    color: #931621;
+}
+
+.section{
+  padding:1rem 0;
+  padding-bottom: 1.5rem;
+}
+
+.shopping-cart-button {
+    color: #EAF2EF;
+}
+
+.shopping-cart{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    background-color: #37040D;
+    color: #EAF2EF;
+    margin: 0;
+    z-index: 1;
+}
+.row-shopping-cart {
+    display: inline-flex;
+    font-size: 1.5rem;
+    width: 100vw;
+}
+
+.col-shopping-cart {
+    align-items: flex-end;
+}
+
 @media(max-width:960px){
   .container{
     padding-right:2rem;
     padding-left:2rem;
+    margin-left: 0;
+    margin-right: 0;
   }
