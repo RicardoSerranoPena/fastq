@@ -6,7 +6,6 @@ const {sendMessage}= require('../helpers/twilio')
 const {sendVendorMessage,getShopVendorById, getVendorDetails, getProductsById} =require('../services/Queries')
 
 exports.addOrder= async (req,res)=>{
-    console.log(req.body)
 
     const customerName=req.body.customerName;
     const customerNumber=req.body.customerNumber;
@@ -14,7 +13,6 @@ exports.addOrder= async (req,res)=>{
     const VendorDetails= await getShopVendorById(shopid);
     const ProductById= await getProductsById(req.body.products);
 
-    console.log(ProductById)
     const data={
         products :ProductById,
     }
@@ -58,7 +56,6 @@ exports.getHome=(req,res)=>{
 }
 
 exports.testRoute=(req,res)=>{
-    console.log(req.body)
 }
 
 
@@ -110,7 +107,6 @@ exports.getShops=(req,res)=>{
     Products.find({shop:id}).populate('shop').exec(async(error, shop)=>{ 
         // res.send(shop)  
         var vendorDetails = await getVendorDetails(shop);
-        console.log(vendorDetails._doc.shop);
         res.render('shop', {products: shop, shopId: vendorDetails._doc.shop._id, shopName: vendorDetails._doc.shop.vendorName, shopNumber: vendorDetails._doc.shop.vendorNumber})
      })
     }

@@ -90,9 +90,13 @@
                 </div>
                 <div class="modal-body">
                     <div class="container">
-
+                        <form onsubmit="return false">
+                            <label>name</label>
+                            <input id="customerName" type="text">
+                            <label>number:</label>
+                            <input id="customerPhone"type="text">
                             <button id="<%=shopId%>" onclick="submit_order(this.id)" class="btn">Submit</button>
-
+                        </form>
                     </div>
                 </div>
             </div>
@@ -159,11 +163,6 @@
 
         alert('Product has been added to cart')
 
-        console.log(productName);
-        console.log(productPrice);
-        console.log(products);
-        console.log(clicked);
-
         fetch('/testRoute', {
             method: 'post',
             headers: { 'Content-Type': 'application/json' },
@@ -174,20 +173,18 @@
     function submit_order(clicked) {
         //customerName&customerPhone
         // var shopId = document.getElementById("shopId").innerHTML;
-        // var customerName = document.getElementById("customerName").innerHTML;
-        // var customerPhone = document.getElementById("customerPhone").innerHTML;
+        var customerName = document.getElementById("customerName").value;
+        var customerPhone = document.getElementById("customerPhone").value;
 
 
         // var productPrice = document.getElementById("price").innerHTML;
         //
         var order = {
             shopId: clicked,
-            customerName: 'ricardo',
-            customerPhone: '3234434907',
+            customerName: customerName,
+            customerPhone: customerPhone,
             products: products
         }
-
-        console.log(order);
 
         fetch('/addorders', {
             method: 'post',
