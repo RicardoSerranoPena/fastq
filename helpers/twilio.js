@@ -1,6 +1,6 @@
 require('dotenv').config()
-const accountSid = process.env.ACCOUNT_SID;
-const authToken = process.env.AUTH_TOKEN;
+const accountSid = 'AC1f279c2ad22c3b62aaddbdaee57c45fb ';
+const authToken = '63ae83073a98d9d2d143eeff2de91ef1';
 const client = require('twilio')(accountSid, authToken);
 
 
@@ -22,5 +22,5 @@ const client = require('twilio')(accountSid, authToken);
   };
 
   module.exports={
-    sendMessage, 
+    sendMessage,
   }

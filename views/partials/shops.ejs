@@ -1,18 +1,17 @@
 <div class="container stores-container">
     <div class="row row-stores align-items-center">
-        <% for (var i =1; i <=10;  i++ ) { %>
+        <% shops.forEach(function(shop, i) { %>
             <div class="col col-stores my-auto">
                 <div style="background-color: #eaf2ef" class="row shop-container">
                     <div class="col-xs-4">
-                        <img class="img img-thumbnail rounded" src="images/food.jpg" alt="...">
+                        <img class="img img-thumbnail rounded" src="<%=shop.productImage%>" alt="...">
                     </div>
                     <div class="col-xs-8">
 
-                        <p class="card-text">Description of stores</p>
+                        <p class="card-text"><a href="/getShopVendorById/<%=shop._id%>"><%= shop.vendorName%></a></p>
                     </div>
                 </div>
              </div>
-        <% } %>
+        <% }) %>
     </div>
-    <a style="text-align: center;" href="/all-stores">See More..</a>
 </div>

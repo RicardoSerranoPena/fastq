@@ -3,70 +3,80 @@ const Orders = require('../models/Order')
 const Products = require('../models/products')
 const Shops = require('../models/shops')
 const {sendMessage}= require('../helpers/twilio')
-const {sendVendorMessage,getShopVendorById} =require('../services/Queries')
+const {sendVendorMessage,getShopVendorById, getVendorDetails, getProductsById} =require('../services/Queries')
 
 exports.addOrder= async (req,res)=>{
     console.log(req.body)
 
     const customerName=req.body.customerName;
     const customerNumber=req.body.customerNumber;
-    const shopid=req.body.shopId
+    const shopid=req.body.shopId;
     const VendorDetails= await getShopVendorById(shopid);
+    const ProductById= await getProductsById(req.body.products);
 
+    console.log(ProductById)
     const data={
-      products :req.body.products,
+        products :ProductById,
     }
 
     Orders.create(data, function(err, result){
-     if(err){
-        return res.send("There was an error");
-     }
-       sendVendorMessage(VendorDetails.vendorName,req.body.products,customerName,customerNumber,VendorDetails.vendorNumber)
+        if(err){
+            return res.send("There was an error");
+        }
+        sendVendorMessage(VendorDetails.vendorName,ProductById,customerName,customerNumber,VendorDetails.vendorNumber)
 
-      res.send(result)
+        res.send(result)
 
-    
+
     })
-      
+
 }
 
 //get the orders by user
 exports.getUserOrders=(req,res)=>{
     const userid=req.params.user_id
     Orders.find({_user:userid}, function(error,orders){
-      if(error){
-          return res.send("There was an error")
-      }else{
-          return res.send(orders)
-      }
+        if(error){
+            return res.send("There was an error")
+        }else{
+            return res.send(orders)
+        }
     })
 }
 
 
 
 exports.getHome=(req,res)=>{
+    Shops.find({}, function(error,shop){
+        if(error){
+            res.send("There is an error")
+        }else{
+            // res.send(shop)
+            res.render('index',{shops:shop})
+        }
+    })
+}
 
-res.render('index', {page:'Home', menuId:'home'});
-
+exports.testRoute=(req,res)=>{
+    console.log(req.body)
 }
 
 
 exports.addProducts=(req,res)=>{
     const id=req.body.shop_id;
     const productData={
-            productName:req.body.productName,
-            productDescription:req.body.productDescription,
-            productPrice:req.body.productPrice,
-            productImage:req.body.productImage
+        productName:req.body.productName,
+        productDescription:req.body.productDescription,
+        productPrice:req.body.productPrice,
+        productImage:req.body.productImage,
+        shop:req.body.shop_id
     }
 
-    Shops.findOne({_id:id}, function(error, shop){
+    Products.create(productData, function(error, products){
         if(error){
             res.send("There is an error")
         }else{
-            shop.products.push(productData)
-            shop.save()
-            res.send(shop)
+            res.send(products)
         }
     })
 
@@ -77,32 +87,30 @@ exports.getProducts=(req,res)=>{
         if(error){
             res.send("There is an error")
         }else{
-           res.send(products) 
+            res.send(products)
         }
     })
 }
 
 exports.createShop=(req,res)=>{
-    
+
     Shops.create(req.body,function(error, shop){
         if(error){
         }else{
-           res.send(shop) 
+            res.send(shop)
         }
     })
 
 }
-
 
 
 exports.getShops=(req,res)=>{
-    // const id=req.params.id;
-    Shops.find({}, function(error,shop){
-        if(error){
-            res.send("There is an error")
-        }else{
-            res.send(shop)
-        //    res.render('shop',{products:shop.products}) 
-        }
-    })
-}
+
+    const id=req.params.id;
+    Products.find({shop:id}).populate('shop').exec(async(error, shop)=>{ 
+        // res.send(shop)  
+        var vendorDetails = await getVendorDetails(shop);
+        console.log(vendorDetails._doc.shop);
+        res.render('shop', {products: shop, shopId: vendorDetails._doc.shop._id, shopName: vendorDetails._doc.shop.vendorName, shopNumber: vendorDetails._doc.shop.vendorNumber})
+     })
+    }

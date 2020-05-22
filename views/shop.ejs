@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
- <% include partials/head %>
+    <% include partials/head %>
 </head>
 <body>
 
@@ -11,52 +11,42 @@
         </div>
         <div class=image-overlay></div>
         <div class="image-content">
-            <h1>Shop name</h1>
-            <a class="address" href="maps.google.com/vietnam">123 corner st. gia loc, tay ninh, vn</a>
-            <p class="hours">7:00am - 9:00pm</p>
+            <h1><%=shopName%></h1>
+            <p>123 corner st. gia loc, tay ninh, vn</p>
+            <p class="hours"><%=shopNumber%></p>
         </div>
     </header>
 
     <section class="section shop-products-section">
         <div class="container">
             <div class="row row-product-list">
-                <% for (var i =1; i <=10;  i++ ) { %>
+                <% products.forEach(function(product, i) { %>
                     <div class="col-12 col-products">
                         <div class="row row-product-item">
                             <div class="col-xs-3">
                                 <div class="menu-item-img">
-                                    <img class="img-fluid img-thumbnail rounded" src="images/food-sm.jpg" alt="...">
+                                    <img class="img-fluid img-thumbnail rounded" src="<%=product.productImage%>" alt="...">
                                 </div>
                             </div>
                             <div class="col-xs-6">
                                 <div class="food-description">
-                                    <p><span class="food-name">Food name   </span></p>
-                                    <p>Food description</p>
-                                    <p><span class="price">20.000vnd</span></p>
+                                    <p><span class="food-name" id="food-name"><%= product.productName%></span></p>
+                                    <p><span class="food-description"><%=product.productDescription%></p>
+                                    <p><span class="price" id="price"><%= product.productPrice%></span>vnd</p>
                                 </div>
                             </div>
                             <div class="col-xs-3 align-self-center">
                                 <div class="food-select-amount container">
-                                    <div class="row row-select-amount align-self-center justify-content-end">
-                                        <div class="col">
-                                            <div class="minus">
-                                                <i class="fas fa-minus-circle"></i>
-                                            </div>
-                                        </div>
-                                        <div class="col">
-                                            <p> n </p>
-                                        </div>
-                                        <div class="col">
-                                            <div class="plus">
-                                                <i class="fas fa-plus-circle"></i>
-                                            </div>
-                                        </div>
+                                    <div class="plus">
+                                        <buttton id="<%=product._id%>" onclick="product_click(this.id)">
+                                            <i class="fas fa-plus-circle fa-2x"></i>
+                                        </button>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                <% } %>
+                <% }) %>
             </div>
         </div>
     </section>
@@ -64,19 +54,51 @@
     <footer class="shopping-cart">
         <div class="container">
             <div class="row row-shopping-cart">
-                <div class="col-xs-9 align-items-center">
+                <div class="col-xs-2 col-shopping-cart align-self-end">
+                    <button type="button" data-toggle="modal" data-target="#cart-modal" class="shopping-cart-button btn">
+                        <i class="fas fa-shopping-cart fa-2x"></i>
+                    </button>
+                </div>
+                <div class="col-xs-6 align-items-center">
                     <button type="button" data-toggle="modal" data-target="#cart-modal" class="shopping-cart-button btn btn-block">
                         Total: $20.00 (2 items)
                     </button>
                 </div>
-                <div class="col-xs-3 col-shopping-cart align-self-end">
-                    <button type="button" data-toggle="modal" data-target="#cart-modal" class="shopping-cart-button btn">
-                        <i class="fas fa-shopping-cart fa-2x"></i>
+                <div class="col-xs-4 col-shopping-cart align-self-end">
+                    <button type="button" data-toggle="modal" data-target="#checkout-modal" class="shopping-cart-button btn">
+                        Checkout
                     </button>
                 </div>
             </div>
         </div>
     </footer>
+
+    <div class="modal fade" id="checkout-modal" tabindex="-1" role="dialog" aria-hidden="true" class="cart-modal">
+        <div clas="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="row">
+                        <div class="col-xs-10">
+                            <h3 class="modal-title">Checkout</h3>
+                        </div>
+                        <div class="col-xs-2">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <div class="container">
+
+                            <button id="<%=shopId%>" onclick="submit_order(this.id)" class="btn">Submit</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
     <div class="modal fade" id="cart-modal" tabindex="-1" role="dialog" aria-hidden="true" class="cart-modal">
         <div class="modal-dialog" role="document">
@@ -114,12 +136,67 @@
                 </div>
                 <div class="modal-footer">
                     <form method="get" action="/pay">
-                        <button type="submit" class="btn-lg">Pay</buttton>
+                        <button type="submit" class="btn-lg">Submit</buttton>
                     </form>
                 </div>
             </div>
         </div>
     </div>
+
+    <script>
+    var products = [];
+    function product_click(clicked) {
+        //add this item id to the cart array
+
+        var productName = document.getElementById("food-name").innerHTML;
+        var productPrice = document.getElementById("price").innerHTML;
+
+        var orderDetails = {
+            id: clicked,
+        }
+
+        products.push(orderDetails);
+
+        alert('Product has been added to cart')
+
+        console.log(productName);
+        console.log(productPrice);
+        console.log(products);
+        console.log(clicked);
+
+        fetch('/testRoute', {
+            method: 'post',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({name: 'ricardo', age: 21})
+        })
+    }
+
+    function submit_order(clicked) {
+        //customerName&customerPhone
+        // var shopId = document.getElementById("shopId").innerHTML;
+        // var customerName = document.getElementById("customerName").innerHTML;
+        // var customerPhone = document.getElementById("customerPhone").innerHTML;
+
+
+        // var productPrice = document.getElementById("price").innerHTML;
+        //
+        var order = {
+            shopId: clicked,
+            customerName: 'ricardo',
+            customerPhone: '3234434907',
+            products: products
+        }
+
+        console.log(order);
+
+        fetch('/addorders', {
+            method: 'post',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(order)
+        })
+
+    }
+    </script>
 
 </body>
 <% include partials/script %>

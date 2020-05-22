@@ -9,10 +9,10 @@ router.get('/', ctrl.getHome);
 // router.get('/shop', ctrl.getShop);
 router.post('/addorders',ctrl.addOrder )
 router.post('/addproducts',ctrl.addProducts)
-router.get('/getproducts',ctrl.getProducts)
+router.get('/getproducts/:id',ctrl.getProducts)
 router.post('/createshop',ctrl.createShop)
-router.get('/shops',ctrl.getShops)
-
+router.get('/getShopVendorById/:id',ctrl.getShops)
+router.post('/testRoute', ctrl.testRoute)
 router.get('/all-stores', function(req,res,next){
   res.render('index')
 }
